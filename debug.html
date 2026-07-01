@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <title>系统诊断页面</title>
+  <style>
+    body { font-family: monospace; padding: 40px; background: #1e1e1e; color: #d4d4d4; }
+    .status { margin: 20px 0; padding: 15px; background: #2d2d2d; border-radius: 5px; }
+    .ok { color: #4ec9b0; }
+    .error { color: #f48771; }
+    .warn { color: #dcdcaa; }
+    h2 { color: #569cd6; margin-top: 30px; }
+    pre { background: #1e1e1e; padding: 10px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>Portfolio Website 实时诊断</h1>
+
+  <h2>1. 文件加载状态</h2>
+  <div id="fileStatus" class="status">检查中...</div>
+
+  <h2>2. 数据加载状态</h2>
+  <div id="dataStatus" class="status">检查中...</div>
+
+  <h2>3. DOM 元素检查</h2>
+  <div id="domStatus" class="status">检查中...</div>
+
+  <h2>4. CSS 样式检查</h2>
+  <div id="cssStatus" class="status">检查中...</div>
+
+  <h2>5. JavaScript 执行检查</h2>
+  <div id="jsStatus" class="status">检查中...</div>
+
+  <h2>6. 控制台日志</h2>
+  <pre id="console"></pre>
+
+  <hr style="margin: 40px 0; border-color: #3e3e3e;">
+  <p><a href="main.html" style="color: #4ec9b0;">返回主页面</a></p>
+
+  <script src="data/projects.js?v=17738"></script>
+  <script>
+    const log = [];
+    function addLog(msg, type = 'ok') {
+      log.push(`[${type}] ${msg}`);
+      document.getElementById('console').textContent = log.join('\n');
+    }
+
+    // 1. 文件加载检查
+    const fileStatus = document.getElementById('fileStatus');
+    let fileMsg = '';
+
+    if (typeof window.PORTFOLIO_PROJECTS !== 'undefined') {
+      fileMsg += '<div class="ok">✓ projects.js 加载成功</div>';
+      addLog('projects.js 加载成功');
+    } else {
+      fileMsg += '<div class="error">✗ projects.js 加载失败</div>';
+      addLog('projects.js 加载失败', 'error');
+    }
+
+    fileStatus.innerHTML = fileMsg;
+
+    // 2. 数据加载检查
+    const dataStatus = document.getElementById('dataStatus');
+    let dataMsg = '';
+
+    if (window.PORTFOLIO_PROJECTS) {
+      dataMsg += `<div class="ok">✓ PORTFOLIO_PROJECTS: ${window.PORTFOLIO_PROJECTS.length} 个项目</div>`;
+      addLog(`PORTFOLIO_PROJECTS: ${window.PORTFOLIO_PROJECTS.length} 个项目`);
+    }
+
+    if (window.PORTFOLIO_PROFILE) {
+      const prof = window.PORTFOLIO_PROFILE;
+      dataMsg += `<div class="ok">✓ PORTFOLIO_PROFILE 存在</div>`;
+      dataMsg += `<div style="margin-left:20px;">name: ${prof.name}</div>`;
+      dataMsg += `<div style="margin-left:20px;">wechat: ${prof.wechat}</div>`;
+      dataMsg += `<div style="margin-left:20px;">email: ${prof.email}</div>`;
+      addLog(`PORTFOLIO_PROFILE: name=${prof.name}, wechat=${prof.wechat}, email=${prof.email}`);
+    }
+
+    if (window.PORTFOLIO_KEYWORDS) {
+      dataMsg += `<div class="ok">✓ PORTFOLIO_KEYWORDS: ${window.PORTFOLIO_KEYWORDS.length} 个关键词</div>`;
+      addLog(`PORTFOLIO_KEYWORDS: ${window.PORTFOLIO_KEYWORDS.length} 个`);
+    }
+
+    dataStatus.innerHTML = dataMsg || '<div class="error">✗ 没有数据</div>';
+
+    // 3. DOM 元素检查（需要等 main.html 加载后才能检查，这里模拟）
+    const domStatus = document.getElementById('domStatus');
+    domStatus.innerHTML = '<div class="warn">⚠ 请在 main.html 中按 F12 查看实际 DOM</div>';
+
+    // 4. CSS 检查
+    const cssStatus = document.getElementById('cssStatus');
+    cssStatus.innerHTML = '<div class="warn">⚠ 请在 main.html 中检查样式是否生效</div>';
+
+    // 5. JS 执行检查
+    const jsStatus = document.getElementById('jsStatus');
+    jsStatus.innerHTML = '<div class="ok">✓ JavaScript 执行正常（你能看到这个页面）</div>';
+    addLog('JavaScript 执行正常');
+
+    // 捕获所有错误
+    window.onerror = function(msg, url, line) {
+      addLog(`错误: ${msg} (${url}:${line})`, 'error');
+    };
+  </script>
+</body>
+</html>

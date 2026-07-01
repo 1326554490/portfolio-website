@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>完整测试页面</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 40px;
+      background: #fafafa;
+      line-height: 1.6;
+    }
+    .test-section {
+      margin: 30px 0;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .ok { color: #10b981; font-weight: 600; }
+    .error { color: #ef4444; font-weight: 600; }
+    .warn { color: #f59e0b; font-weight: 600; }
+    h1 { color: #1f2937; margin-bottom: 40px; }
+    h2 { color: #374151; margin-top: 0; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
+    pre {
+      background: #f3f4f6;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+    .element-check {
+      padding: 8px;
+      margin: 5px 0;
+      background: #f9fafb;
+      border-left: 3px solid #d1d5db;
+    }
+    .element-check.found { border-left-color: #10b981; }
+    .element-check.missing { border-left-color: #ef4444; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Portfolio Website 完整诊断</h1>
+
+  <div class="test-section">
+    <h2>1️⃣ 数据文件加载检查</h2>
+    <div id="dataCheck">检测中...</div>
+  </div>
+
+  <div class="test-section">
+    <h2>2️⃣ DOM 元素存在性检查</h2>
+    <div id="domCheck">检测中...</div>
+  </div>
+
+  <div class="test-section">
+    <h2>3️⃣ 数据详情</h2>
+    <div id="dataDetails">检测中...</div>
+  </div>
+
+  <div class="test-section">
+    <h2>4️⃣ JavaScript 错误</h2>
+    <div id="jsErrors">暂无错误</div>
+  </div>
+
+  <div class="test-section">
+    <h2>5️⃣ 推荐操作</h2>
+    <div id="recommendations">分析中...</div>
+  </div>
+
+  <script src="data/projects.js?v=1782808114"></script>
+  <script>
+    const errors = [];
+    const warnings = [];
+    const info = [];
+
+    // 捕获所有错误
+    window.onerror = function(msg, url, line, col, error) {
+      errors.push(`${msg} (${url}:${line}:${col})`);
+      updateErrors();
+      return false;
+    };
+
+    function updateErrors() {
+      const errDiv = document.getElementById('jsErrors');
+      if (errors.length === 0) {
+        errDiv.innerHTML = '<span class="ok">✓ 无 JavaScript 错误</span>';
+      } else {
+        errDiv.innerHTML = errors.map(e => `<div class="error">✗ ${e}</div>`).join('');
+      }
+    }
+
+    // 1. 数据文件检查
+    function checkData() {
+      const dataCheck = document.getElementById('dataCheck');
+      let html = '';
+
+      if (typeof window.PORTFOLIO_PROJECTS !== 'undefined') {
+        html += `<div class="ok">✓ PORTFOLIO_PROJECTS 已加载 (${window.PORTFOLIO_PROJECTS.length} 个项目)</div>`;
+        info.push('PORTFOLIO_PROJECTS 正常');
+      } else {
+        html += '<div class="error">✗ PORTFOLIO_PROJECTS 未加载</div>';
+        errors.push('PORTFOLIO_PROJECTS 未定义');
+      }
+
+      if (typeof window.PORTFOLIO_PROFILE !== 'undefined') {
+        html += '<div class="ok">✓ PORTFOLIO_PROFILE 已加载</div>';
+        info.push('PORTFOLIO_PROFILE 正常');
+      } else {
+        html += '<div class="error">✗ PORTFOLIO_PROFILE 未加载</div>';
+        errors.push('PORTFOLIO_PROFILE 未定义');
+      }
+
+      if (typeof window.PORTFOLIO_KEYWORDS !== 'undefined') {
+        html += `<div class="ok">✓ PORTFOLIO_KEYWORDS 已加载 (${window.PORTFOLIO_KEYWORDS.length} 个)</div>`;
+      } else {
+        html += '<div class="error">✗ PORTFOLIO_KEYWORDS 未加载</div>';
+      }
+
+      dataCheck.innerHTML = html;
+    }
+
+    // 2. DOM 元素检查（模拟 main.html 中应该有的元素）
+    function checkDOM() {
+      const domCheck = document.getElementById('domCheck');
+      const elementsToCheck = [
+        { id: 'hero', name: 'Hero 区' },
+        { id: 'about', name: 'About 区' },
+        { id: 'aboutPosition', name: 'About - 定位文字' },
+        { id: 'aboutIntent', name: 'About - 求职意向' },
+        { id: 'projects', name: 'Projects 区' },
+        { id: 'projectCards', name: 'Projects - 卡片容器' },
+        { id: 'education', name: 'Education 区' },
+        { id: 'eduList', name: 'Education - 列表' },
+        { id: 'skills', name: 'Skills 区' },
+        { id: 'skillsGrid', name: 'Skills - 网格' },
+        { id: 'contact', name: 'Contact 区' },
+        { id: 'contactLock', name: 'Contact - 密钥输入' },
+        { id: 'contactContent', name: 'Contact - 内容区' }
+      ];
+
+      let html = '<div style="font-size: 14px; color: #6b7280; margin-bottom: 10px;">注意：此测试页面只能检测数据，无法检测 main.html 的 DOM。请在 main.html 按 F12 查看实际情况。</div>';
+      html += '<div style="background: #fef3c7; padding: 15px; border-radius: 4px; margin-top: 10px;">';
+      html += '<strong>预期的 main.html 元素：</strong><br>';
+      elementsToCheck.forEach(elem => {
+        html += `<div>• #${elem.id} - ${elem.name}</div>`;
+      });
+      html += '</div>';
+
+      domCheck.innerHTML = html;
+    }
+
+    // 3. 数据详情
+    function showDataDetails() {
+      const dataDetails = document.getElementById('dataDetails');
+      let html = '';
+
+      if (window.PORTFOLIO_PROFILE) {
+        const prof = window.PORTFOLIO_PROFILE;
+        html += '<h3 style="margin-top:0; color: #059669;">PORTFOLIO_PROFILE</h3>';
+        html += '<pre>' + JSON.stringify(prof, null, 2) + '</pre>';
+      }
+
+      if (window.PORTFOLIO_PROJECTS) {
+        html += '<h3 style="color: #059669;">PORTFOLIO_PROJECTS (' + window.PORTFOLIO_PROJECTS.length + ' 个)</h3>';
+        window.PORTFOLIO_PROJECTS.forEach((proj, i) => {
+          html += `<div style="margin: 10px 0; padding: 10px; background: #f0fdf4; border-radius: 4px;">`;
+          html += `<strong>${i + 1}. ${proj.title}</strong><br>`;
+          html += `ID: ${proj.id} | Color: ${proj.accent}<br>`;
+          html += `Summary: ${proj.summary.substring(0, 50)}...`;
+          html += `</div>`;
+        });
+      }
+
+      dataDetails.innerHTML = html || '<span class="warn">⚠ 无数据</span>';
+    }
+
+    // 4. 推荐操作
+    function showRecommendations() {
+      const recDiv = document.getElementById('recommendations');
+      let html = '';
+
+      if (errors.length > 0) {
+        html += '<div class="error">❌ 发现错误</div>';
+        html += '<ol>';
+        errors.forEach(err => {
+          html += `<li>${err}</li>`;
+        });
+        html += '</ol>';
+        html += '<p><strong>建议：</strong>检查 data/projects.js 文件是否存在且路径正确。</p>';
+      } else if (info.length > 0) {
+        html += '<div class="ok">✅ 数据加载正常</div>';
+        html += '<p><strong>下一步：</strong></p>';
+        html += '<ol>';
+        html += '<li>在浏览器打开 <code>http://localhost:8000/main.html</code></li>';
+        html += '<li>按 <kbd>F12</kbd> 打开开发者工具</li>';
+        html += '<li>切换到 <strong>Console</strong> 标签，查看是否有红色错误</li>';
+        html += '<li>切换到 <strong>Elements</strong> 标签，搜索 <code>id="about"</code> 看元素是否存在</li>';
+        html += '<li>检查元素的 <code>display</code> 样式是否被设置为 <code>none</code></li>';
+        html += '</ol>';
+      }
+
+      recDiv.innerHTML = html;
+    }
+
+    // 执行所有检查
+    setTimeout(() => {
+      checkData();
+      checkDOM();
+      showDataDetails();
+      showRecommendations();
+      updateErrors();
+    }, 100);
+  </script>
+</body>
+</html>

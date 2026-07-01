@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="刘碧依 · AI Product Manager / 设计学硕士 / Vibe Coder — AI 产品经理实习作品集与个人简介">
+  <title>刘碧依 · Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=17738">
+  <!-- 字体：Inter（英文数字） + 思源宋体/宋体（中文） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- 首次绘制前标记 JS 可用，启用淡入淡出过渡（无 JS 时不隐藏内容） -->
+  <script>document.documentElement.className += ' js';</script>
+
+</head>
+<body>
+
+<!-- 滚动进度条：随项目色彩注入一起变色，强化"整体是一套系统"的感觉 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- 噪点层 -->
+<div class="grain"></div>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-name">刘碧依 · Portfolio</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <!-- 元信息 -->
+  <div class="hero-meta">
+    <span>liu biyi</span>
+    <span>scroll → projects</span>
+  </div>
+
+  <!-- logo + 标题 + 关键词组 -->
+  <div class="hero-stage" id="heroStage">
+    <!-- Logo: L 字母标志 -->
+    <div class="hero-logo" id="heroLogo" title="Liu Biyi" aria-label="L">
+      <svg viewBox="0 0 100 100">
+        <rect class="logo-frame" x="5.5" y="5.5" width="89" height="89" rx="8"/>
+        <text class="logo-letter" x="50" y="68" font-family="var(--display)" font-size="56" font-weight="300" text-anchor="middle">L</text>
+      </svg>
+    </div>
+
+    <!-- 主标题：横排一行，点击后淡出 -->
+    <h1 class="hero-title hero-title-inline">
+      AI产品×交互体验
+    </h1>
+
+    <!-- 署名 -->
+    <div class="hero-credit">Created by 刘碧依</div>
+
+    <!-- 点击后展开的英文说明：逐词浮现，斜体，居中 -->
+    <div class="hero-keywords" id="heroKeywords">
+      <!-- JS 注入：Designing / product / experiences / ... -->
+    </div>
+  </div>
+
+  <!-- 身份副行：让 Hero 一眼说明"她是谁、要做什么"（JS 注入 intent） -->
+  <p class="hero-role" id="heroRole"></p>
+
+  <!-- 提示文字 -->
+  <div class="hero-hint">
+    <span class="scroll-cue">Scroll to explore</span>
+    <span>© 2026</span>
+  </div>
+</section>
+
+<!-- 鼠标跟随光斑 -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- About / 求职意向 -->
+<section class="section" id="about">
+  <div class="section-tag">About</div>
+  <h2 class="section-title reveal">一句话定位</h2>
+
+  <div class="intent-grid">
+    <div>
+      <p class="reveal" id="aboutPosition"></p>
+    </div>
+
+    <dl class="intent-list">
+      <div class="intent-row reveal">
+        <dt>求职意向</dt>
+        <dd id="aboutIntent"></dd>
+      </div>
+      <div class="intent-row reveal">
+        <dt>实习时间</dt>
+        <dd id="aboutAvail"></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="projects-wrap" id="projects">
+  <div class="projects-inner">
+    <div class="section-tag">Projects / 实习与项目</div>
+    <h2 class="section-title reveal">代表作品</h2>
+
+    <!-- 卡片容器，由 JS 动态填充 -->
+    <div id="projectCards"></div>
+  </div>
+</section>
+
+<!-- Education + Research -->
+<section class="section" id="education">
+  <div class="section-tag">Education & Research</div>
+  <h2 class="section-title reveal">教育背景 & 科研</h2>
+
+  <div class="edu-grid">
+    <div class="edu-block">
+      <h3 class="reveal" style="font-family:var(--serif);font-size:22px;margin:0 0 24px;font-weight:400">教育背景</h3>
+      <div id="eduList"><!-- JS fill --></div>
+    </div>
+
+    <div class="edu-block">
+      <h3 class="reveal" style="font-family:var(--serif);font-size:22px;margin:0 0 24px;font-weight:400">科研学术</h3>
+      <div id="researchList"><!-- JS fill --></div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="section" id="skills">
+  <div class="section-tag">Skills</div>
+  <h2 class="section-title reveal">技能与荣誉</h2>
+
+  <div class="skills-grid" id="skillsGrid">
+    <!-- JS fill skill groups -->
+  </div>
+
+  <div class="awards-strip reveal">
+    <span class="awards-label">Awards</span>
+    <div id="awardsList"><!-- JS fill --></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <h2 class="contact-title reveal">联系我</h2>
+
+  <!-- 密钥输入界面 -->
+  <div class="contact-lock" id="contactLock">
+    <div class="lock-prompt">输入访问密钥以查看联系方式</div>
+    <div class="lock-input-wrap">
+      <input type="password" id="contactKey" class="lock-input" placeholder="请输入密钥" autocomplete="off">
+      <button id="contactUnlock" class="lock-btn">解锁</button>
+    </div>
+    <div class="lock-error" id="lockError"></div>
+  </div>
+
+  <!-- 联系方式（默认隐藏）-->
+  <div class="contact-grid" id="contactContent" style="display: none;">
+    <div class="contact-item reveal">
+      <div class="label">WeChat</div>
+      <div class="value" id="contactWechat"></div>
+    </div>
+    <div class="contact-item reveal">
+      <div class="label">Email</div>
+      <div class="value">
+        <a href="mailto:1326554490@qq.com" id="contactEm

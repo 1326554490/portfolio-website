@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Contact 测试</title>
+</head>
+<body>
+  <h1>Contact 数据测试</h1>
+  <div id="result"></div>
+  
+  <script src="data/projects.js?v=33"></script>
+  <script>
+    const prof = window.PORTFOLIO_PROFILE;
+    const result = document.getElementById('result');
+    
+    if (prof) {
+      result.innerHTML = `
+        <p>✓ PORTFOLIO_PROFILE 加载成功</p>
+        <p>姓名: ${prof.name}</p>
+        <p>微信: ${prof.wechat}</p>
+        <p>邮箱: ${prof.email}</p>
+      `;
+    } else {
+      result.innerHTML = '<p>✗ PORTFOLIO_PROFILE 未加载</p>';
+    }
+  </script>
+</body>
+</html>
