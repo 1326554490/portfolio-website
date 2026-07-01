@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F5EE"/>
+      <stop offset="55%" stop-color="#DFE7D7"/>
+      <stop offset="100%" stop-color="#C2D0B5"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="logoCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EDF2E6"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="26"/>
+      <feOffset dx="0" dy="18"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- 渐变背景 -->
+  <rect width="1200" height="900" fill="url(#bg)"/>
+
+  <!-- 中心柔光 -->
+  <ellipse cx="600" cy="378" rx="720" ry="520" fill="url(#glow)"/>
+
+  <!-- 装饰圆弧（以 logo 为圆心，环绕陪伴）-->
+  <circle cx="600" cy="378" r="300" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="600" cy="378" r="360" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <circle cx="600" cy="378" r="420" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.16"/>
+
+  <!-- 中心 Logo 卡片（中心点 600,378）-->
+  <g transform="translate(440, 218)" filter="url(#cardShadow)">
+    <rect width="320" height="320" rx="68" fill="url(#logoCard)"/>
+    <g transform="translate(45, 45) scale(1.15)">
+      <rect x="0" y="0" width="200" height="200" rx="44" ry="44" fill="#4ea0a8"/>
+      <rect x="44" y="56" width="22" height="102" rx="11" ry="11" fill="#dde8eb"/>
+      <rect x="44" y="136" width="50" height="22" rx="11" ry="11" fill="#dde8eb"/>
+      <rect x="90" y="56" width="86" height="22" rx="11" ry="11" fill="#dde8eb"/>
+      <rect x="90" y="89" width="86" height="22" rx="11" ry="11" fill="#e8b56a"/>
+      <rect x="118" y="136" width="58" height="22" rx="11" ry="11" fill="#dde8eb"/>
+      <path d="M 94 132 A 13 13 0 0 1 94 162" stroke="#e89472" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- 文字区：居中对齐 -->
+  <g text-anchor="middle" font-family="'Inter Tight', Inter, 'PingFang SC', 'Songti SC', -apple-system, sans-serif">
+    <!-- 主标题 -->
+    <text x="600" y="672" font-size="78" font-weight="500" fill="#3F5239" letter-spacing="-1">乐读 Lodue</text>
+
+    <!-- 副标题 -->
+    <text x="600" y="724" font-size="25" font-weight="400" fill="#6B7D65" letter-spacing="1.5">为难以持续阅读的人，做一个会陪你读的网页</text>
+
+    <!-- 分隔短线 -->
+    <line x1="570" y1="766" x2="630" y2="766" stroke="#8B9C82" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- 三个能力点 mono -->
+    <g font-family="'JetBrains Mono', monospace" font-size="15" fill="#6b8068" letter-spacing="2" font-weight="500">
+      <text x="600" y="812">READING CALIBRATION · QUIET COMPANION</text>
+    </g>
+  </g>
+</svg>

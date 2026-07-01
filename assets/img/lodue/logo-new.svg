@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- 中间黄横的青绿色光晕 -->
+    <filter id="midGlow" x="-30%" y="-100%" width="160%" height="300%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feFlood flood-color="#9fd9b8" flood-opacity="0.95" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 圆角方形背景（蓝绿，略饱和） -->
+  <rect x="0" y="0" width="200" height="200" rx="44" ry="44" fill="#4ea0a8"/>
+
+  <!-- L 字竖笔（左侧大圆头） -->
+  <rect x="44" y="56" width="22" height="102" rx="11" ry="11" fill="#dde8eb"/>
+
+  <!-- L 字底横（短，给橙色弧线留空间） -->
+  <rect x="44" y="136" width="50" height="22" rx="11" ry="11" fill="#dde8eb"/>
+
+  <!-- 顶部白横（左端对齐中间黄横） -->
+  <rect x="90" y="56" width="86" height="22" rx="11" ry="11" fill="#dde8eb"/>
+
+  <!-- 中间黄横（青绿光晕） -->
+  <rect x="90" y="89" width="86" height="22" rx="11" ry="11"
+        fill="#e8b56a" filter="url(#midGlow)"/>
+
+  <!-- 底部白横（左端比顶部黄横稍靠右） -->
+  <rect x="118" y="136" width="58" height="22" rx="11" ry="11" fill="#dde8eb"/>
+
+  <!-- 橙色小半圆（竖向 ) 形，紧贴 L 底横右端，位置垂直居中于底横） -->
+  <path d="M 94 132 A 13 13 0 0 1 94 162"
+        stroke="#e89472" stroke-width="4.5"
+        fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5EFE4"/>
+      <stop offset="55%" stop-color="#E8DCC4"/>
+      <stop offset="100%" stop-color="#D4BE94"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBF7EF"/>
+      <stop offset="100%" stop-color="#EFE4D0"/>
+    </linearGradient>
+    <!-- 右半边"AI 生成"用的网格遮罩感渐变 -->
+    <linearGradient id="genFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b97a3e" stop-opacity="0.0"/>
+      <stop offset="100%" stop-color="#b97a3e" stop-opacity="0.22"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="26"/>
+      <feOffset dx="0" dy="18"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="panelClip"><rect width="360" height="300" rx="28"/></clipPath>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <ellipse cx="600" cy="350" rx="720" ry="520" fill="url(#glow)"/>
+
+  <circle cx="600" cy="330" r="300" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="600" cy="330" r="362" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.26"/>
+  <circle cx="600" cy="330" r="424" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.13"/>
+
+  <!-- 中心样本卡片：镬耳墙 + 左原始/右AI补全 -->
+  <g transform="translate(420, 170)" filter="url(#cardShadow)">
+    <rect width="360" height="300" rx="28" fill="url(#panel)"/>
+    <g clip-path="url(#panelClip)">
+      <!-- 天空 -->
+      <rect width="360" height="300" fill="#f6efe2"/>
+
+      <!-- 镬耳墙建筑剪影（岭南标志性锅耳形山墙） -->
+      <g fill="#b97a3e">
+        <!-- 主墙体 -->
+        <rect x="96" y="150" width="168" height="120"/>
+        <!-- 左锅耳 -->
+        <path d="M96 150 q-30 0 -30 -34 q0 -26 22 -26 q20 0 20 24 l0 36 z"/>
+        <!-- 右锅耳 -->
+        <path d="M264 150 q30 0 30 -34 q0 -26 -22 -26 q-20 0 -20 24 l0 36 z"/>
+        <!-- 屋脊 -->
+        <rect x="92" y="146" width="176" height="12"/>
+      </g>
+      <!-- 门窗（留白） -->
+      <rect x="166" y="200" width="28" height="70" fill="#f6efe2"/>
+      <rect x="120" y="178" width="26" height="22" fill="#d8c4a0"/>
+      <rect x="214" y="178" width="26" height="22" fill="#d8c4a0"/>
+      <!-- 灰塑装饰带 -->
+      <rect x="96" y="166" width="168" height="8" fill="#a8854e"/>
+
+      <!-- 右半：AI 生成区（网格 + 渐染 + 标注） -->
+      <g opacity="0.5" stroke="#b97a3e" stroke-width="1" fill="none">
+        <path d="M180 0 V300 M210 0 V300 M240 0 V300 M270 0 V300 M300 0 V300 M330 0 V300"/>
+        <path d="M180 30 H360 M180 60 H360 M180 90 H360 M180 120 H360 M180 150 H360 M180 180 H360 M180 210 H360 M180 240 H360 M180 270 H360"/>
+      </g>
+      <rect x="180" y="0" width="180" height="300" fill="url(#genFade)"/>
+      <!-- 中分割虚线：原始 | AI -->
+      <line x1="180" y1="0" x2="180" y2="300" stroke="#b97a3e" stroke-width="2" stroke-dasharray="7 7" opacity="0.7"/>
+
+      <!-- 透明度标注角标 -->
+      <g transform="translate(286, 26)">
+        <rect width="60" height="26" rx="13" fill="#b97a3e"/>
+        <text x="30" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#fff" font-weight="700" letter-spacing="1">AI 60%</text>
+      </g>
+    </g>
+    <!-- 卡片内左下标签 -->
+    <g transform="translate(20, 256)">
+      <rect width="78" height="26" rx="13" fill="#ffffff" stroke="#d8c4a0" stroke-width="1.5"/>
+      <text x="39" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#b97a3e" font-weight="500" letter-spacing="1">原始</text>
+    </g>
+  </g>
+
+  <!-- 文字区 -->
+  <g text-anchor="middle" font-family="'Inter Tight', Inter, 'PingFang SC', 'Songti SC', -apple-system, sans-serif">
+    <text x="600" y="655" font-size="68" font-weight="500" fill="#5a3d20" letter-spacing="-0.5">AI 补全 · 文化真实性</text>
+    <text x="600" y="725" font-size="26" font-weight="400" fill="#7c5a35" letter-spacing="0.8">岭南建筑文化符号</text>
+    <line x1="540" y1="762" x2="660" y2="762" stroke="#a8854e" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <g font-family="'JetBrains Mono', monospace" font-size="15" fill="#b97a3e" letter-spacing="2.5" font-weight="500">
+      <text x="600" y="805">AIGC · AUTHENTICITY · PERCEPTION</text>
+    </g>
+  </g>
+</svg>

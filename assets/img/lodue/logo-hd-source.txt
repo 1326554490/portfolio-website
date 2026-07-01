@@ -1,0 +1,1 @@
+提示：这是你提供的高清 SVG 源文件，已保存到同目录的 logo-hd.svg。请用它替换 projects.js 中的 logo 字段。

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4F7FF"/>
+      <stop offset="55%" stop-color="#DEE7FF"/>
+      <stop offset="100%" stop-color="#C2D0FB"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.65"/>
+      <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EEF3FF"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="26"/>
+      <feOffset dx="0" dy="18"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <ellipse cx="600" cy="360" rx="720" ry="520" fill="url(#glow)"/>
+
+  <!-- 装饰圆弧 -->
+  <circle cx="600" cy="340" r="300" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="600" cy="340" r="362" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.28"/>
+  <circle cx="600" cy="340" r="424" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.14"/>
+
+  <!-- 中心配置卡片：题型库 -->
+  <g transform="translate(430, 160)" filter="url(#cardShadow)">
+    <rect width="340" height="356" rx="36" fill="url(#panel)"/>
+    <!-- header -->
+    <circle cx="33" cy="38" r="6" fill="#3b6df5" opacity="0.85"/>
+    <circle cx="51" cy="38" r="6" fill="#9db8f7"/>
+    <circle cx="69" cy="38" r="6" fill="#cdd9f7"/>
+    <text x="311" y="43" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="13" fill="#7e93c4" letter-spacing="2" font-weight="500">题型库</text>
+    <line x1="29" y1="64" x2="311" y2="64" stroke="#dde6fb" stroke-width="1.5"/>
+
+    <!-- 题型 tiles 3x2，accent 高亮其一 -->
+    <g>
+      <!-- 单选（高亮） -->
+      <g transform="translate(29, 88)">
+        <rect width="82" height="82" rx="16" fill="#3b6df5"/>
+        <circle cx="41" cy="34" r="13" fill="none" stroke="#ffffff" stroke-width="3"/>
+        <circle cx="41" cy="34" r="5" fill="#ffffff"/>
+        <text x="41" y="66" text-anchor="middle" font-family="'Inter','PingFang SC',sans-serif" font-size="13" fill="#ffffff" font-weight="500">单选</text>
+      </g>
+      <!-- 多选 -->
+      <g transform="translate(129, 88)">
+        <rect width="82" height="82" rx="16" fill="#eef3ff" stroke="#d4e0ff" stroke-width="1.5"/>
+        <rect x="28" y="21" width="26" height="26" rx="6" fill="none" stroke="#3b6df5" stroke-width="3"/>
+        <path d="M34 34 l5 6 l9 -12" fill="none" stroke="#3b6df5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="41" y="66" text-anchor="middle" font-family="'Inter','PingFang SC',sans-serif" font-size="13" fill="#5b6b8c" font-weight="500">多选</text>
+      </g>
+      <!-- 判断 -->
+      <g transform="translate(229, 88)">
+        <rect width="82" height="82" rx="16" fill="#eef3ff" stroke="#d4e0ff" stroke-width="1.5"/>
+        <path d="M26 34 l5 6 l9 -12" fill="none" stroke="#3b6df5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M48 28 l12 12 M60 28 l-12 12" stroke="#9db0d6" stroke-width="3" stroke-linecap="round"/>
+        <text x="41" y="66" text-anchor="middle" font-family="'Inter','PingFang SC',sans-serif" font-size="13" fill="#5b6b8c" font-weight="500">判断</text>
+      </g>
+      <!-- 拖拽 -->
+      <g transform="translate(29, 188)">
+        <rect width="82" height="82" rx="16" fill="#eef3ff" stroke="#d4e0ff" stroke-width="1.5"/>
+        <g fill="#3b6df5">
+          <circle cx="31" cy="26" r="3.5"/><circle cx="41" cy="26" r="3.5"/><circle cx="51" cy="26" r="3.5"/>
+          <circle cx="31" cy="36" r="3.5"/><circle cx="41" cy="36" r="3.5"/><circle cx="51" cy="36" r="3.5"/>
+        </g>
+        <text x="41" y="66" text-anchor="middle" font-family="'Inter','PingFang SC',sans-serif" font-size="13" fill="#5b6b8c" font-weight="500">拖拽</text>
+      </g>
+      <!-- 排序 -->
+      <g transform="translate(129, 188)">
+        <rect width="82" height="82" rx="16" fill="#eef3ff" stroke="#d4e0ff" stroke-width="1.5"/>
+        <g stroke="#3b6df5" stroke-width="3" stroke-linecap="round">
+          <line x1="28" y1="24" x2="54" y2="24"/>
+          <line x1="28" y1="34" x2="48" y2="34"/>
+          <line x1="28" y1="44" x2="52" y2="44"/>
+        </g>
+        <text x="41" y="66" text-anchor="middle" font-family="'Inter','PingFang SC',sans-serif" font-size="13" fill="#5b6b8c" font-weight="500">排序</text>
+      </g>
+      <!-- Prompt -->
+      <g transform="translate(229, 188)">
+        <rect width="82" height="82" rx="16" fill="#eef3ff" stroke="#d4e0ff" stroke-width="1.5"/>
+        <text x="41" y="42" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="22" fill="#3b6df5" font-weight="700">&gt;_</text>
+        <text x="41" y="66" text-anchor="middle" font-family="'Inter','PingFang SC',sans-serif" font-size="13" fill="#5b6b8c" font-weight="500">Prompt</text>
+      </g>
+    </g>
+    <!-- 底部统计条 -->
+    <g transform="translate(29, 300)">
+      <rect width="282" height="34" rx="10" fill="#f3f7ff" stroke="#e1e9fb" stroke-width="1.5"/>
+      <circle cx="22" cy="17" r="6" fill="#3b6df5"/>
+      <text x="40" y="22" font-family="'JetBrains Mono', monospace" font-size="12" fill="#5b6b8c" letter-spacing="1.5">配置 → 展示 → 答题 → 统计</text>
+    </g>
+  </g>
+
+  <!-- 文字区 -->
+  <g text-anchor="middle" font-family="'Inter Tight', Inter, 'PingFang SC', 'Songti SC', -apple-system, sans-serif">
+    <text x="600" y="672" font-size="74" font-weight="500" fill="#1f3a78" letter-spacing="-1">星芽 AI 插件系统</text>
+    <text x="600" y="724" font-size="25" font-weight="400" fill="#5b6b8c" letter-spacing="1.2">把散装 AI 插件，变成可配置、可复用、可统计的题型系统</text>
+    <line x1="570" y1="766" x2="630" y2="766" stroke="#7e93c4" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <g font-family="'JetBrains Mono', monospace" font-size="15" fill="#3b6df5" letter-spacing="2" font-weight="500">
+      <text x="600" y="812">CONFIG · STUDENT · TEACHER DASHBOARD</text>
+    </g>
+  </g>
+</svg>
